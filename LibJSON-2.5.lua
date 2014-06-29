@@ -35,12 +35,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 --]==]
-local MAJOR, MINOR = "Lib:dkJSON-2.5", 1
+local MAJOR, MINOR = "Lib:dkJSON-2.5", 2
 -- Get a reference to the package information if any
 local APkg = Apollo.GetPackage(MAJOR)
 -- If there was an older version loaded we need to see if this is newer
-if APkg and (APkg.nVersion > 0) then
-  return -- no upgrades
+if APkg and (APkg.nVersion or 0) >= MINOR then
+  return -- no upgrade needed
 end
 -- Set a reference to the actual package or create an empty table
 local JSON = APkg and APkg.tPackage or {}
